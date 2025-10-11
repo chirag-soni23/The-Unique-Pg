@@ -76,7 +76,7 @@ const About = () => {
         <section className="mt-16 hero-gradient rounded-2xl p-12 text-white">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-5xl font-bold mb-2">50+</div>
+              <div className="text-5xl font-bold mb-2">100+</div>
               <div className="text-xl opacity-90">Happy Students</div>
             </div>
             <div>
