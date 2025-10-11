@@ -9,8 +9,10 @@ import nonac1 from "./nonac1.jpg";
 import nonac2 from "./nonac2.jpg";
 import nonac3 from "./nonac3.jpg";
 import studyroom from "./studyroom.jpg";
+import logo from "./logo.png";
 export const assets = {
   kitchen,
+  logo,
   studyroom,
   nonac1,
   nonac2,
