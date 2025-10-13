@@ -61,7 +61,7 @@ const FAQ = () => {
     {
       question: "How far is Madhuban Police from The Unique PG?",
       answer:
-        "We are located within 200-300 meter from Madhuban Police Station, approximately 10-15 minutes by bike or auto.",
+        "We are located within 200-300 meter from Madhuban Police Station, approximately 1 minutes by bike or auto.",
     },
     {
       question: "Are pets allowed?",
