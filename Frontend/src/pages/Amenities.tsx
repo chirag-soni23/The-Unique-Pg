@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { 
-  Wifi, 
+  Wifi,
   Utensils, 
   Shield, 
   Sparkles, 
