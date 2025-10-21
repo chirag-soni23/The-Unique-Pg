@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { toast } from "sonner";
+import axios from "axios"; 
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +17,7 @@ const Contact = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!formData.name || !formData.phone || !formData.message) {
@@ -26,32 +27,25 @@ const Contact = () => {
 
     setLoading(true);
     try {
-      const response = await fetch("https://the-unique-pg.onrender.com/api/contact", {
-        method: "POST",
+      const { data } = await axios.post("http://localhost:5000/api/contact", formData, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        toast.success("Message sent! We'll get back to you soon.");
-        setFormData({ name: "", phone: "", email: "", message: "" });
-      } else {
-        toast.error(data?.error || "Something went wrong.");
-      }
+      toast.success("Message sent! We'll get back to you soon.");
+      setFormData({ name: "", phone: "", email: "", message: "" });
     } catch (error) {
-      toast.error("Failed to send message. Try again later.");
+      console.error(error);
+      const errorMsg =
+        error.response?.data?.error || "Failed to send message. Try again later.";
+      toast.error(errorMsg);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -76,10 +70,7 @@ const Contact = () => {
             <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium mb-2"
-                >
+                <label htmlFor="name" className="block text-sm font-medium mb-2">
                   Your Name *
                 </label>
                 <Input
@@ -93,10 +84,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <label
-                  htmlFor="phone"
-                  className="block text-sm font-medium mb-2"
-                >
+                <label htmlFor="phone" className="block text-sm font-medium mb-2">
                   Phone Number *
                 </label>
                 <Input
@@ -111,10 +99,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium mb-2"
-                >
+                <label htmlFor="email" className="block text-sm font-medium mb-2">
                   Email Address *
                 </label>
                 <Input
@@ -129,10 +114,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium mb-2"
-                >
+                <label htmlFor="message" className="block text-sm font-medium mb-2">
                   Your Message *
                 </label>
                 <Textarea
