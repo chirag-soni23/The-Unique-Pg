@@ -27,7 +27,7 @@ const Contact = () => {
 
     setLoading(true);
     try {
-      const { data } = await axios.post("http://localhost:5000/api/contact", formData, {
+      const { data } = await axios.post("https://the-unique-pg.onrender.com/api/contact", formData, {
         headers: {
           "Content-Type": "application/json",
         },
