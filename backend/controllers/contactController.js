@@ -22,7 +22,7 @@ export const handleContactForm = async (req, res) => {
   try {
     await transporter.sendMail({
       from: `"Contact Form" <${process.env.EMAIL_USER}>`,
-      to: process.env.RECEIVER_EMAIL,
+      to: process.env.EMAIL_USER,
       subject: "New Contact Form Submission",
       html: `
         <div style="font-family: 'Segoe UI', Roboto, sans-serif; color: #333; padding: 20px;">
