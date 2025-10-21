@@ -30,12 +30,7 @@ const Contact = () => {
     try {
       const { data } = await axios.post(
         `${API_BASE_URL}/api/contact`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        formData
       );
 
       toast.success("Message sent! We'll get back to you soon.");
