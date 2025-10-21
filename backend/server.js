@@ -6,7 +6,13 @@ import contactRoutes from "./routes/contactRoutes.js";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://the-unique-pg.vercel.app", "http://localhost:8080"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 // routes

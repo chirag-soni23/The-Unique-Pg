@@ -5,9 +5,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { toast } from "sonner";
-import axios from "axios"; 
+import axios from "axios";
 
 const Contact = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -27,18 +28,23 @@ const Contact = () => {
 
     setLoading(true);
     try {
-      const { data } = await axios.post("https://the-unique-pg.onrender.com/api/contact", formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const { data } = await axios.post(
+        `${API_BASE_URL}/api/contact`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       toast.success("Message sent! We'll get back to you soon.");
       setFormData({ name: "", phone: "", email: "", message: "" });
     } catch (error) {
       console.error(error);
       const errorMsg =
-        error.response?.data?.error || "Failed to send message. Try again later.";
+        error.response?.data?.error ||
+        "Failed to send message. Try again later.";
       toast.error(errorMsg);
     } finally {
       setLoading(false);
@@ -70,7 +76,10 @@ const Contact = () => {
             <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium mb-2"
+                >
                   Your Name *
                 </label>
                 <Input
@@ -84,7 +93,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium mb-2"
+                >
                   Phone Number *
                 </label>
                 <Input
@@ -99,7 +111,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium mb-2"
+                >
                   Email Address *
                 </label>
                 <Input
@@ -114,7 +129,10 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium mb-2"
+                >
                   Your Message *
                 </label>
                 <Textarea
