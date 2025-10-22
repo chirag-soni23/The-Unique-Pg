@@ -21,7 +21,7 @@ export const handleContactForm = async (req, res) => {
 
   try {
     await transporter.sendMail({
-      from: `"Contact Form" <${process.env.EMAIL_USER}>`,
+      from: `Contact Form <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
       subject: "New Contact Form Submission",
       html: `
